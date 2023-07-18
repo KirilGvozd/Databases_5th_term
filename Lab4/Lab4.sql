@@ -9,3 +9,13 @@ SELECT * FROM v$instance;
 SELECT * FROM SYS.PRODUCT_COMPONENT_VERSION;
 
 -- Задание №4
+CREATE PLUGGABLE DATABASE GKV_PDB
+ADMIN USER pdb1_admin IDENTIFIED BY password
+ROLES = (DBA)
+FILE_NAME_CONVERT =('/opt/oracle/oradata/XE/pdbseed', '/opt/oracle/oradata/XE/GKV_PDB');
+
+
+-- Задание №5
+SELECT name, open_mode FROM v$pdbs;
+
+-- Задание №6

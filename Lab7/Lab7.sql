@@ -24,3 +24,4 @@ SELECT * FROM V$DISPATCHER;
 -- В докере нет такого сервиса, только если вы установили прямо на винду
 
 -- Задание №9
+SELECT USERNAME, SERVER FROM V$SESSION WHERE USERNAME IS NOT NULL;

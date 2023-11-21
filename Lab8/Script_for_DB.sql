@@ -275,11 +275,3 @@ insert into  AUDITORIUM   (AUDITORIUM,   AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDIT
 insert into  AUDITORIUM   (AUDITORIUM,   AUDITORIUM_NAME, AUDITORIUM_TYPE, AUDITORIUM_CAPACITY )
                         values  ('?',   '???', 'ЛК',  90);
 -----------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
- 

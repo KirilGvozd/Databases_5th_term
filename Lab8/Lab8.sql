@@ -66,7 +66,7 @@ SELECT NAME, VALUE FROM V$PARAMETER WHERE NAME LIKE 'plsql%';
     end;
     DECLARE
     float_number number(2, 5) := 2.124;
-    second_float_number number(3, 10) := 12.2134;
+    second_float_number number(3, 10) := 12.21;
     BEGIN
         DBMS_OUTPUT.PUT_LINE('Первое число: '|| float_number);
         DBMS_OUTPUT.PUT_LINE('Второе число: '|| second_float_number);

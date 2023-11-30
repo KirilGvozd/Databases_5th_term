@@ -20,7 +20,7 @@ BEGIN
       dbms_output.put_line('z= '|| z);
     exception
       when others
-      then dbms_output.put_line('error = '|| sqlerrm || ', error sqlcode = ' || sqlcode);
+      then dbms_output.put_line('Error = '|| sqlerrm || ', SQLCODE of the error = ' || sqlcode);
     end;
 END;
 
@@ -33,7 +33,7 @@ BEGIN
             z := 5/0;
         exception
             when OTHERS
-            then dbms_output.put_line('ERROR SQLCODE = ' || sqlcode || chr(10) || 'ERROR MESSAGE = ' || sqlerrm);
+            then dbms_output.put_line('SQLCODE of the error = ' || sqlcode || chr(10) || 'Error message = ' || sqlerrm);
         end;
         dbms_output.put_line('z = '||z);
     end;
@@ -44,10 +44,10 @@ end;
 SELECT NAME, VALUE FROM V$PARAMETER WHERE NAME = 'plsql_warnings';
 
 -- Задание №6
-SELECT KEYWORD FROM V$RESERVED_WORDS WHERE LENGTH = 1 AND KEYWORD != 'A';
+SELECT KEYWORD FROM V$RESERVED_WORDS WHERE LENGTH = 1;
 
 -- Задание №7
-SELECT KEYWORD FROM V$RESERVED_WORDS WHERE LENGTH > 1 AND KEYWORD != 'A' ORDER BY KEYWORD;
+SELECT KEYWORD FROM V$RESERVED_WORDS WHERE LENGTH > 1 ORDER BY KEYWORD;
 
 -- Задание №8
 -- (В консоли) show parameter plsql;
@@ -65,8 +65,8 @@ SELECT NAME, VALUE FROM V$PARAMETER WHERE NAME LIKE 'plsql%';
         DBMS_OUTPUT.PUT_LINE('Деление с остатком: '|| third_number);
     end;
     DECLARE
-    float_number number(2, 5) := 2.124;
-    second_float_number number(3, 10) := 12.21;
+    float_number number(5, 2) := 2.124;
+    second_float_number number(4, 2) := 12.21;
     BEGIN
         DBMS_OUTPUT.PUT_LINE('Первое число: '|| float_number);
         DBMS_OUTPUT.PUT_LINE('Второе число: '|| second_float_number);
@@ -94,17 +94,23 @@ number_with_power number := 1e-5;
 boolean_variable boolean := true;
 BEGIN
     DBMS_OUTPUT.PUT_LINE('Число в степени: '|| number_with_power);
-    DBMS_OUTPUT.PUT_LINE('Булевая переменная: '|| boolean_variable);
+    IF boolean_variable = true
+        THEN DBMS_OUTPUT.PUT_LINE('True');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('False');
+    END IF;
 end;
 
 -- Задание №18
 DECLARE
 constant_number constant number := 12;
-constant_string constant nvarchar2 := 'Строка';
+constant_string constant nvarchar2(20) := 'Строка';
+constant_char constant char := 'Z';
 BEGIN
     DBMS_OUTPUT.PUT_LINE('constant_number / 3: '|| constant_number / 3);
     DBMS_OUTPUT.PUT_LINE('constant_number * 3: '|| constant_number * 3);
     DBMS_OUTPUT.PUT_LINE('constant_string: '|| constant_string);
+    DBMS_OUTPUT.PUT_LINE('constant_char: ' || constant_char);
 end;
 
 -- Задание №19
@@ -121,7 +127,8 @@ faculty_res FACULTY%ROWTYPE;
 BEGIN
     faculty_res.FACULTY := 'ТОВ';
     faculty_res.FACULTY_NAME := 'Технология Органических Веществ';
-    DBMS_OUTPUT.PUT_LINE(faculty_res);
+    DBMS_OUTPUT.PUT_LINE(faculty_res.FACULTY);
+    DBMS_OUTPUT.PUT_LINE(faculty_res.FACULTY_NAME);
 end;
 
 -- Задание №21-22
@@ -129,11 +136,11 @@ DECLARE
 some_number number := 12;
 BEGIN
     IF some_number > 10 THEN
-        DBMS_OUTPUT.PUT_LINE('10 <' || some_number);
+        DBMS_OUTPUT.PUT_LINE('10 < ' || some_number);
     ELSIF some_number = 10 THEN
-        DBMS_OUTPUT.PUT_LINE('12 =' || some_number);
+        DBMS_OUTPUT.PUT_LINE('12 = ' || some_number);
     ELSE
-        DBMS_OUTPUT.PUT_LINE('10 >' || some_number);
+        DBMS_OUTPUT.PUT_LINE('10 > ' || some_number);
     end if;
 end;
 
@@ -142,9 +149,9 @@ DECLARE
 some_number number := 10;
 BEGIN
     CASE
-        WHEN some_number < 10 THEN DBMS_OUTPUT.PUT_LINE('10 >' || some_number);
-        WHEN some_number = 10 THEN DBMS_OUTPUT.PUT_LINE('10 =' || some_number);
-        WHEN some_number BETWEEN 1 AND 5 THEN DBMS_OUTPUT.PUT_LINE('1 <' || some_number || '< 5');
+        WHEN some_number < 10 THEN DBMS_OUTPUT.PUT_LINE('10 > ' || some_number);
+        WHEN some_number = 10 THEN DBMS_OUTPUT.PUT_LINE('10 = ' || some_number);
+        WHEN some_number BETWEEN 1 AND 5 THEN DBMS_OUTPUT.PUT_LINE('1 < ' || some_number || ' < 5');
     END CASE;
 end;
 

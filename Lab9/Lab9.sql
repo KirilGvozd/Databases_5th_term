@@ -2,7 +2,7 @@
 DECLARE
     auditorium_res AUDITORIUM%rowtype;
 BEGIN
-    SELECT * INTO auditorium_res FROM AUDITORIUM WHERE AUDITORIUM = '313-1';
+    SELECT * INTO auditorium_res FROM AUDITORIUM WHERE AUDITORIUM = '206-1';
     DBMS_OUTPUT.PUT_LINE(auditorium_res.AUDITORIUM || ' Capacity: ' || auditorium_res.AUDITORIUM_CAPACITY);
     EXCEPTION WHEN OTHERS
     THEN DBMS_OUTPUT.PUT_LINE(sqlerrm);
@@ -126,7 +126,7 @@ end;
 
 -- Task 10
 BEGIN
-    DELETE FROM TEACHER WHERE TEACHER = 'SOMEBODY';
+    DELETE FROM TEACHER WHERE TEACHER = 13;
     IF (sql%rowcount = 0)
         THEN RAISE NO_DATA_FOUND;
     END IF;
